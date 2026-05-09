@@ -1,0 +1,31 @@
+# Object files
+*.o
+*.a
+*.so
+
+# Executables
+a.out
+*.out
+
+# Debug
+*.dSYM/
+vgcore.*
+
+# Editors
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Coverage
+*.gcda
+*.gcno
+*.gcov
+
+# Build
+build/
+dist/
+
+# 42
+*.norm
