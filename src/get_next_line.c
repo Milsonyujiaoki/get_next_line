@@ -11,6 +11,6 @@ char  *get_next_line(int fd)
         return NULL;
     }
 
-    ft_lstnew(&list, fd);
+    ft_lstnew(malloc(sizeof(char) * (BUFFER_SIZE + 1)));
 
 }   
