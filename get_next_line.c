@@ -1,4 +1,4 @@
-#include "../include/get_next_line.h"
+#include "get_next_line.h"
 
 /*
 ** gnl_strlen — comprimento de s (NULL-safe)
