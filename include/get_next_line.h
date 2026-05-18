@@ -2,6 +2,9 @@
 # define GET_NXT_LN_H
 # define BUFFER_SIZE
 
+# include <unistd.h>
+# include <stdio.h>
+
 /* ── §1  t_list  ─────────────────────────────────────────────────────────
 ** Singly-linked list — required by the 42 norm.
 ** ft_lst* functions operate on this type.
