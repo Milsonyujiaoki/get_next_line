@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "get_next_line.h"
 
 /*
 ** =========================================================
@@ -6,14 +6,14 @@
 ** =========================================================
 */
 
-t_list  *ft_lstnew(void *content)
+t_list  *ft_lstnew(char *str_buf)
 {
     t_list *node;
 
     node = (t_list *)ft_malloc(sizeof(t_list));
     if (!node)
         return (NULL);
-    node->content = content;
+    node->str_buf = str_buf;
     node->next = NULL;
     return (node);
 }
@@ -72,7 +72,7 @@ void    ft_lstdelone(t_list *lst, void (*del)(void *))
     if (!lst)
         return ;
     if (del)
-        del(lst->content);
+        del(lst->str_buf);
     ft_free(lst);
 }
 void    ft_lstclear(t_list **lst, void (*del)(void *))
@@ -102,7 +102,7 @@ void    ft_lstiter(t_list *lst, void (*f)(void *))
 
     while(lst != NULL)
     {
-        f(lst->content);
+        f(lst->str_buf);
         lst = lst->next;
     }
 }
@@ -121,7 +121,7 @@ t_list  *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
         return (NULL);
     new_list = NULL;
     while (lst)    {
-        new_content = f(lst->content);
+        new_content = f(lst->str_buf);
         if (!new_content)        {
             ft_lstclear(&new_list, del);
             return (NULL);
@@ -148,7 +148,7 @@ void   ft_print_list(t_list *lst)
     while (lst)
     {
         // Realiza o cast explícito de void* para char* para evitar warnings
-        ft_putstr_fd((char *)lst->content, 1);
+        ft_putstr_fd((char *)lst->str_buf, 1);
         
         if (lst->next)
         {
@@ -179,7 +179,7 @@ void    ft_printf_lst(t_list *lst, void (*print_data)(void *))
         // --- O SEGREDO ESTÁ AQUI ---
         // Imprime o início da linha e chama a função acessória para o conteúdo
         ft_printf(" │ Data: \033[1;32m");
-        print_data(lst->content); 
+        print_data(lst->str_buf); 
         ft_printf("\033[0m\t    │\n");
         // ---------------------------
 

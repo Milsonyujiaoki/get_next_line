@@ -1,9 +1,14 @@
-# ifndef GET_NXT_LN_H
+#ifndef GET_NXT_LN_H
 # define GET_NXT_LN_H
-# define BUFFER_SIZE
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
 /* ── §1  t_list  ─────────────────────────────────────────────────────────
 ** Singly-linked list — required by the 42 norm.
@@ -12,11 +17,11 @@
 
 typedef struct s_list
 {
-	void            *content;
+	char            *str_buf;
 	struct s_list   *next;
 }   t_list;
 
-t_list  *ft_lstnew(void *content);
+t_list  *ft_lstnew(char *str_buf);
 void     ft_lstadd_front(t_list **lst, t_list *new_node);
 int      ft_lstsize(t_list *lst);
 t_list  *ft_lstlast(t_list *lst);
