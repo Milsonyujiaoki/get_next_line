@@ -17,11 +17,11 @@
 
 typedef struct s_list
 {
-	char            *str_buf;
+	void            *content;
 	struct s_list   *next;
 }   t_list;
 
-t_list  *ft_lstnew(char *str_buf);
+t_list  *ft_lstnew(void *content);
 void     ft_lstadd_front(t_list **lst, t_list *new_node);
 int      ft_lstsize(t_list *lst);
 t_list  *ft_lstlast(t_list *lst);
