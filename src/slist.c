@@ -57,7 +57,17 @@ void ft_lstadd_back(t_list **lst, t_list *new_node)
         return ;
     }
     last = ft_lstlast(*lst);
-    last->next = new_node;
+    if (last == NULL)
+    {
+        *lst = new_node;
+        return ;
+    } else {
+        last->next = new_node;
+        new_node->next = NULL;
+        return ;
+    }
+
+    
 }
 
 void ft_lstdelone(t_list *lst, void (*del)(void *))

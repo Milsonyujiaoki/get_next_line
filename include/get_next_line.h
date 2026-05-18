@@ -9,6 +9,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <string.h>
 
 /* ── §1  t_list  ─────────────────────────────────────────────────────────
 ** Singly-linked list — required by the 42 norm.
