@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-int main(void)
+char  *get_next_line(int fd)
 {
-    printf("42 Project Initialized\n");
-    return (0);
+    
 }
