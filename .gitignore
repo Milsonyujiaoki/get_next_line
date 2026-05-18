@@ -29,3 +29,4 @@ dist/
 
 # 42
 *.norm
+.aider*
