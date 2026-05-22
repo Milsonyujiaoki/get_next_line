@@ -1,0 +1,55 @@
+remainder string
+│
+├─ simples
+├─ pouca memória estrutural
+├─ fácil debugging
+└─ pode gerar O(n²)
+
+linked list
+│
+├─ incremental
+├─ streaming friendly
+├─ append barato
+└─ traversal pior
+
+vector/dynamic array
+│
+├─ cache friendly
+├─ rápido
+├─ amortized O(n)
+└─ realloc ocasional
+
+ring buffer
+│
+├─ altíssima performance
+├─ reutiliza memória
+└─ lógica mais complexa
+
+rope/tree
+│
+├─ gigantesco volume
+├─ inserções rápidas
+└─ complexidade alta
+
+hashmap fd->state
+│
+├─ múltiplos streams
+├─ escalável
+└─ gerenciamento extra
+
+v1 -> static remainder Buffer Linear
+v2 -> linked list
+v3 -> vector
+v4 -> ring buffer
+v5 -> hashmap fd state
+v6 -> state machine formal
+
+padrões de fluxo
+|
+├─producer-consumer
+├─streaming
+├─bufferization
+├─chunking
+├─state machines
+├─event loops
+└─parsing incremental

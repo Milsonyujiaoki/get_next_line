@@ -1,0 +1,72 @@
+name: 42 C CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  norm:
+    name: Norm & Formatter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Norminette
+        run: |
+          python -m pip install --upgrade pip
+          pip install norminette
+
+      - name: Install c_formatter_42
+        run: |
+          pip install c-formatter-42
+
+      - name: Run formatter
+        run: |
+          find . -type f \( -name "*.c" -o -name "*.h" \) \
+          -not -path "./build/*" \
+          -exec c_formatter_42 {} \;
+
+      - name: Check formatting changes
+        run: |
+          git diff --exit-code
+
+      - name: Run norminette
+        run: |
+          norminette
+
+  build:
+    name: Build & Tests
+    runs-on: ubuntu-latest
+    needs: norm
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            valgrind
+
+      - name: Build
+        run: make
+
+      - name: Run tests
+        run: make test
+
+      - name: Run valgrind
+        run: |
+          valgrind \
+            --leak-check=full \
+            --show-leak-kinds=all \
+            --track-origins=yes \
+            ./program

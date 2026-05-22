@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <student.42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026-05-21 11:48:51 by marvin            #+#    #+#             */
+/*   Updated: 2026-05-21 11:48:51 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 /*
@@ -54,6 +66,8 @@ static char	*gnl_extract(const char *s)
 	size_t	j;
 	char	*line;
 
+	if (!s || !*s)
+		return (NULL);
 	i = 0;
 	while (s[i] && s[i] != '\n')
 		i++;
@@ -71,6 +85,7 @@ static char	*gnl_extract(const char *s)
 	line[j] = '\0';
 	return (line);
 }
+
 
 /*
 ** gnl_trim — remove do remainder tudo até (e incluindo) '\n' (libera o antigo).
@@ -138,6 +153,9 @@ char	*get_next_line(int fd)
 	if (!remainder || !*remainder)
 		return (free(remainder), remainder = NULL, NULL);
 	line = gnl_extract(remainder);
-	remainder = gnl_trim(remainder);
+	if (!line)
+		return (free(remainder), remainder = NULL, NULL);
+	char *tmp = gnl_trim(remainder);
+	remainder = tmp;
 	return (line);
 }
